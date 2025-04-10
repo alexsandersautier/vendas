@@ -1,11 +1,12 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .serializers import ClienteSerializer
 from .models import Cliente
-
-class ClientesView(ListCreateAPIView):
+from core.views import BaseView
+class ClientesView(BaseView, ListCreateAPIView):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
 
-class ClienteView(RetrieveUpdateDestroyAPIView):
+class ClienteView(BaseView, RetrieveUpdateDestroyAPIView):
     queryset = Cliente.objects.all()
-    serializer_class = ClienteSerializer    
+    serializer_class = ClienteSerializer 
